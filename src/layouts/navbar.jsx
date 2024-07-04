@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 import { CircleUser, Menu, Package2 } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
+import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
 
 const Layout = () => {
   return (
@@ -21,9 +23,13 @@ const Layout = () => {
         <MobileNav />
         <UserMenu />
       </header>
-      <main className="flex-grow overflow-auto">
-        <Outlet />
-      </main>
+      <div className="flex flex-col md:flex-row flex-grow">
+        <main className="flex-grow overflow-auto p-4">
+          <Outlet />
+        </main>
+        <Sidebar />
+      </div>
+      <Footer />
     </div>
   );
 };
@@ -35,7 +41,7 @@ const DesktopNav = () => (
       className="flex items-center gap-2 text-lg font-semibold md:text-base"
     >
       <Package2 className="h-6 w-6" />
-      <span className="sr-only">Acme Inc</span>
+      <span className="sr-only">Financial News</span>
     </NavItem>
     {navItems.map((item) => (
       <NavItem key={item.to} to={item.to}>
@@ -60,7 +66,7 @@ const MobileNav = () => (
           className="flex items-center gap-2 text-lg font-semibold"
         >
           <Package2 className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <span className="sr-only">Financial News</span>
         </NavItem>
         {navItems.map((item) => (
           <NavItem key={item.to} to={item.to}>
